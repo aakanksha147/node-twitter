@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title>Zikher Software Solution Task</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-sortable.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/angular-route.js"></script>
+    <script type="text/javascript" src="js/angular-animate.js"></script>
+    <script type="text/javascript" src="js/bootstrap-sortable.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="routes.js"></script>
+    <script type="text/javascript" src="controllers/mainCtrl.js"></script>
+    <script src="services/userServices.js"></script>
+    <style> 
+    input[type=text] {
+        width: 150px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 10px 20px 10px 40px;
+        max-width:300px !important;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 300px;
+    }
+    </style>
+</head>
+<body ng-app="userApp" ng-controller="mainCtrl as main">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+        <div  class="useractivitygraph">
+            <label>Username Here</label>
+            <form ng-submit="main.search(data)">
+                <input type="text" name="search" ng-model="main.data.username" placeholder="Search..">
+                <br><br>
+                <button type="submit" class="btn btn-success">Search</button>
+            </form>     
+        </div>
+    </div>
+    
+<div class="jumbotron text-center" ng-if="main.loading">
+        <span class="glyphicon glyphicon-repeat spinner"></span>
+        <p>Loading...</p>
+</div>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" ng-if="main.user">
+        <div class="frienddetails">
+            <label style="text-decoration:underline;"> Welcome {{main.name}}</label>
+            <div class="table-responsive">          
+                <table class="table table-striped" style="text-align:center;margin-top:40px;">
+                    <thead>
+                        <tr style="text-align:center; background-color:#eeeeee;">
+                            <th>Profile Pic</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Number of Tweets</th>
+                            <th>Number of Followers</th>
+                            <th>Number of Friends</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr> 
+                            <td><img ng-src={{main.profile_pic}} alt="Description" />
+                            </td>
+                            <td>{{main.name}}</td>
+                            <td>{{main.location}}</td>
+                            <td>{{main.status}}</td>
+                            <td><a href="" ng-click="main.follow()">{{main.followers}}</a></td>
+                            <td>{{main.friends}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" ng-if="main.list">
+        <div class="frienddetails">
+        <label style="text-decoration:underline;">{{main.name}} Followers</label>
+            <div class="table-responsive">          
+                <table class="table table-striped bootstrapTable" style="text-align:center;margin-top:40px;">
+                    <thead>
+                        <tr style="text-align:center; background-color:#eeeeee;">
+                            <th>Profile Pic</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Number of Tweets</th>
+                            <th>Number of Followers</th>
+                            <th>Number of Friends</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in main.follower | orderBy">  
+                            <td ng-repeat="y in x track by $index"><img ng-src={{y.profile_image_url}} alt="Description" />
+                            </td>
+                            <td ng-repeat="y in x track by $index">{{y.name}}</td>
+                            <td ng-repeat="y in x track by $index">{{y.location}}</td>
+                            <td ng-repeat="y in x track by $index">{{y.statuses_count}}</td>
+                            <td ng-repeat="y in x track by $index">{{y.followers_count}}</td>
+                            <td ng-repeat="y in x track by $index">{{y.friends_count}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <script>
+                    $.extend($.fn.bootstrapTable.columnDefaults, {
+                        sortable: true
+                    });
+
+                    $(function() {
+                        $('.bootstrapTable').bootstrapTable();
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

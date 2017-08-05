@@ -1,0 +1,76 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+
+.thead {
+    backface-visibility: hidden;
+    border-bottom: 1px solid #e6ecf0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    height:48px;
+    background:#eeeeee;
+}
+.tprofile {
+    margin-left:50px;
+}
+.tusername {
+    display:inline-block;
+    font-size:14px;
+    text-align:center;
+}
+.profilepic {
+    float:right;
+    margin-right:20px;
+    display:inline-block;
+}
+.tname {
+    display:block;
+    font-size:18px;
+    font-weight:bold;
+}
+.tfollowing {
+    text-align:center;
+    margin-top:15px;
+    font-size:16px;
+}
+.tfollowers {
+    text-align:center;
+    margin-top:15px;
+    font-size:16px;
+}
+.ttweets {
+    text-align:center;
+    margin-top:15px;
+    font-size:16px;
+}
+.tfollowing label{
+    font-size:16px;
+}
+.tfollowers label{
+    font-size:16px;
+}
+.ttweets label{
+    font-size:16px;
+}
+
+.useractivitygraph {
+   text-align:center;
+   margin-top:60px !important;
+   font-size:20px;
+   font-weight:bold;
+}
+
+.frienddetails {
+   text-align:center;
+   margin-top:40px !important;
+   font-size:20px;
+   font-weight:bold;
+}
+canvas {
+    margin-top:30px;
+}
+table, tr, th, thead, td {
+    text-align:center;
+}
